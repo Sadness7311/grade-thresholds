@@ -1,43 +1,72 @@
-import { useEffect, useState } from "react"
 import {
   Table,
   TableBody,
   TableHead,
   TableRow,
 } from "../components/ui/table"
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "../components/ui/pagination"
+import { useEffect, useState } from "react"
 
-function ThresholdsTable() {
+function ThresholdsTable({ thresholds }) {
 
-  const [thresholds, setThresholds] = useState([])
+  const totalPages = Math.ceil(thresholds.length / 200)
+
+  const [currentThresholds, setCurrentThresholds] = useState([])
+  const [page, setPage] = useState(1)
 
   useEffect(() => {
-    fetch("/cie_grade_boundaries.csv")
-      .then(res => res.text())
-      .then(csvText => {
-        const lines = csvText.split('\n')
-        const data = lines.map(line => line.split(','))
-        setThresholds(data)
-      })
-  }, [])
+    setCurrentThresholds(thresholds.slice((page - 1) * 200, page * 200))
+    window.scrollTo(0, 0)
+  }, [thresholds, page])
 
-  return thresholds.length ? (
-    <Table>
-      <TableBody>
-        { 
-          thresholds.map((threshold, i) => 
-            <TableRow key={i}>
-              {
-                threshold.map((head, i) => 
-                  <TableHead key={i}>
-                    { head }
-                  </TableHead>
-                )
-              }
-            </TableRow>
-          )
-        }
-      </TableBody>
-    </Table>
+  return currentThresholds.length ? (
+    <div className='w-full flex flex-col gap-5'>
+      <h2>Current Page: { page }</h2>
+      <Table>
+        <TableBody>
+          { 
+            currentThresholds.map((threshold, i) => 
+              <TableRow key={i}>
+                {
+                  [i + 1, ...threshold].map((head, i) => 
+                    <TableHead key={i}>
+                      { head }
+                    </TableHead>
+                  )
+                }
+              </TableRow>
+            )
+          }
+        </TableBody>
+      </Table>
+
+      <Pagination>
+        <PaginationContent>
+          <PaginationItem>
+            <PaginationPrevious onClick={() => setPage(prev => prev > 1 ? prev - 1 : 1)} />
+          </PaginationItem>
+          <PaginationItem>
+            { 
+              Array.from({ length: totalPages }).map((_, i) => 
+                <PaginationLink onClick={() => setPage(i + 1)} className={page === i + 1 && 'bg-accent'}>
+                  { i + 1 }
+                </PaginationLink>
+              )
+            }
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationNext onClick={() => setPage(prev => prev < totalPages ? prev + 1 : totalPages)} />
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
+    </div>
   ) : (
     <span>Loading...</span>
   )
