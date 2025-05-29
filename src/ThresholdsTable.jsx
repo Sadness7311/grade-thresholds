@@ -1,5 +1,6 @@
 import {
   Table,
+  TableHeader,
   TableBody,
   TableHead,
   TableRow,
@@ -14,7 +15,8 @@ import {
 } from "../components/ui/pagination"
 import { useEffect, useState } from "react"
 
-function ThresholdsTable({ thresholds }) {
+
+function ThresholdsTable({ header, thresholds }) {
 
   const totalPages = Math.ceil(thresholds.length / 200)
 
@@ -28,8 +30,12 @@ function ThresholdsTable({ thresholds }) {
 
   return currentThresholds.length ? (
     <div className='w-full flex flex-col gap-5'>
-      <h2>Current Page: { page }</h2>
       <Table>
+        <TableHeader>
+          <TableRow className='text-base'>
+            { header.map((head, i) => <TableHead key={i}>{ head }</TableHead>)}
+          </TableRow>
+        </TableHeader>
         <TableBody>
           { 
             currentThresholds.map((threshold, i) => 

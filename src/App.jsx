@@ -20,7 +20,10 @@ function App() {
       <h1>Cambridge International (CIE) AS & A-Level Grade Boundaries Dataset (2021 – 2025)</h1>
       <p className='text-[grey] mb-6'>Website developed by <a href="https://github.com/Sadness7311">Sadness7311</a>, Dataset provided by <a href="https://github.com/ChessMastermind/">ChessMastermind</a>.</p>
 
-      <ThresholdsTable thresholds={thresholds} />
+      <ThresholdsTable 
+        header={thresholds[0]}
+        thresholds={thresholds.slice(1)} 
+      />
     </div>
   )
 }
