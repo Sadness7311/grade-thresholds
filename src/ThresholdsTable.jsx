@@ -33,7 +33,7 @@ function ThresholdsTable({ header, thresholds }) {
       <Table>
         <TableHeader>
           <TableRow className='text-base'>
-            { header.map((head, i) => <TableHead key={i}>{ head }</TableHead>)}
+            { header.map((head, i) => <TableHead key={i}>{ head }</TableHead>) }
           </TableRow>
         </TableHeader>
         <TableBody>

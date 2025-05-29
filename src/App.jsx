@@ -21,7 +21,7 @@ function App() {
       <p className='text-[grey] mb-6'>Website developed by <a href="https://github.com/Sadness7311">Sadness7311</a>, Dataset provided by <a href="https://github.com/ChessMastermind/">ChessMastermind</a>.</p>
 
       <ThresholdsTable 
-        header={thresholds[0]}
+        header={thresholds.length && ['', ...thresholds[0]]}
         thresholds={thresholds.slice(1)} 
       />
     </div>
