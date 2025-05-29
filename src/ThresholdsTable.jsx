@@ -32,7 +32,7 @@ function ThresholdsTable({ header, thresholds }) {
     <div className='w-full flex flex-col gap-5'>
       <Table>
         <TableHeader>
-          <TableRow className='text-base'>
+          <TableRow className='text-base bg-accent'>
             { header.map((head, i) => <TableHead key={i}>{ head }</TableHead>) }
           </TableRow>
         </TableHeader>
@@ -42,7 +42,7 @@ function ThresholdsTable({ header, thresholds }) {
               <TableRow key={i}>
                 {
                   [i + 1, ...threshold].map((head, i) => 
-                    <TableHead key={i}>
+                    <TableHead key={i} className={i == 0 && 'text-base'}>
                       { head }
                     </TableHead>
                   )
