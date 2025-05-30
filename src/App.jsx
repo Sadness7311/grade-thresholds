@@ -53,7 +53,7 @@ function App() {
   return (
     <div className="w-full flex flex-col items-center text-center gap-5 px-2 pb-10">
     
-      <div className="flex items-center justify-end gap-8 px-4 w-full py-5 border-b-1 border-accent sm:px-12">
+      <div className="flex items-center justify-end gap-8 px-4 w-full py-7 border-b-1 border-accent sm:px-12">
         <p className="flex gap-2">Donate <ExternalLink /></p>
         <p>Documentation</p>
         <p className="flex gap-2">API <Code /></p>
@@ -83,8 +83,8 @@ function App() {
           onChange={e => setValue(e.target.value)} 
         />
         <DropdownMenu>
-          <DropdownMenuTrigger className="flex gap-1 text-base cursor-pointer p-2">
-              Rows per page <ArrowDown />
+          <DropdownMenuTrigger className="flex text-base cursor-pointer px-4 py-2 bg-accent rounded-md">
+              { rowsOnOnePage } <ArrowDown />
           </DropdownMenuTrigger>
           <DropdownMenuContent>
             {

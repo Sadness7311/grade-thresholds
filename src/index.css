@@ -128,32 +128,34 @@
   }
 
   * {
-    @apply outline-ring/50;
+    @apply border-border outline-ring/50;
   }
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter';
-    font-size: 22px;
   }
+}
 
-  h1 {
-    @apply text-6xl sm:text-7xl;
-  }
+body {
+  font-family: 'Inter';
+}
 
-  h2 {
-    @apply text-2xl;
-  }
+h1 {
+  @apply text-6xl sm:text-7xl;
+}
 
-  p {
-    @apply text-base;
-  }
+h2 {
+  @apply text-2xl;
+}
 
-  svg {
-    @apply text-primary;
-  }
+p {
+  @apply text-base;
+}
 
-  a {
-    @apply text-[#05D7FF] hover:underline;
-  }
+svg {
+  @apply text-primary;
+}
+
+a {
+  @apply text-[#05D7FF] hover:underline;
 }
