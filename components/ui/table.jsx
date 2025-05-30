@@ -13,7 +13,7 @@ function Table({
         className={cn("w-full caption-bottom text-sm", className)}
         {...props} />
     </div>
-  );
+  )
 }
 
 function TableHeader({
@@ -25,7 +25,7 @@ function TableHeader({
       data-slot="table-header"
       className={cn("[&_tr]:border-b", className)}
       {...props} />
-  );
+  )
 }
 
 function TableBody({
@@ -37,7 +37,7 @@ function TableBody({
       data-slot="table-body"
       className={cn("[&_tr:last-child]:border-0", className)}
       {...props} />
-  );
+  )
 }
 
 function TableFooter({
@@ -49,7 +49,7 @@ function TableFooter({
       data-slot="table-footer"
       className={cn("bg-muted/50 border-t font-medium [&>tr]:last:border-b-0", className)}
       {...props} />
-  );
+  )
 }
 
 function TableRow({
@@ -64,7 +64,7 @@ function TableRow({
         className
       )}
       {...props} />
-  );
+  )
 }
 
 function TableHead({
@@ -79,7 +79,7 @@ function TableHead({
         className
       )}
       {...props} />
-  );
+  )
 }
 
 function TableCell({
@@ -94,7 +94,7 @@ function TableCell({
         className
       )}
       {...props} />
-  );
+  )
 }
 
 function TableCaption({
@@ -106,7 +106,7 @@ function TableCaption({
       data-slot="table-caption"
       className={cn("text-muted-foreground mt-4 text-sm", className)}
       {...props} />
-  );
+  )
 }
 
 export {

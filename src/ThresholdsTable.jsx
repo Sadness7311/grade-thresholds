@@ -15,34 +15,32 @@ import {
   PaginationPrevious,
 } from "../components/ui/pagination"
 import { useEffect, useState } from "react"
-import {
-  Drawer,
-  DrawerContent,
-  DrawerDescription,
-  DrawerTitle,
-  DrawerTrigger,
-} from "../components/ui/drawer"
-import { ChartNoAxesColumnIncreasing } from 'lucide-react'
-import ThresholdChart from "./ThresholdChart"
+import ThresholdDrawer from "./ThresholdDrawer"
+import { Atom, BookType, BriefcaseBusiness, Calculator, Code, FlaskConical, HandCoins, Leaf, Map, Pen, User } from "lucide-react"
 
 
-function ThresholdsTable({ header, thresholds, page, setPage }) {
+function ThresholdsTable({ header, thresholds, rowsOnOnePage, page, setPage }) {
 
-  const rowsOnOnePage = 20
-  const totalPages = Math.ceil(thresholds.length / rowsOnOnePage)
-
+  const [totalPages, setTotalPages] = useState(Math.ceil(thresholds.length / rowsOnOnePage)) 
   const [currentThresholds, setCurrentThresholds] = useState([])
+
+  const subjectIcons = [['math', <Calculator />], ['physics', <Atom />], ['computer', <Code />], ['bio', <Leaf />], ['business', <BriefcaseBusiness />], ['chemistry', <FlaskConical />], ['art', <Pen />], ['accounting', <User />], ['economics', <HandCoins />], ['english', <BookType />], ['geography', <Map />]]
 
   useEffect(() => {
     setCurrentThresholds(thresholds.slice((page - 1) * rowsOnOnePage, page * rowsOnOnePage))
-  }, [thresholds, page])
+  }, [thresholds, page, rowsOnOnePage])
+
+  useEffect(() => {
+    setTotalPages(Math.ceil(thresholds.length / rowsOnOnePage))
+    setPage(1)
+  }, [rowsOnOnePage, thresholds])
 
   return header ? (
     <div className='w-full flex flex-col gap-5'>
       <Table>
         <TableHeader>
           <TableRow className='bg-accent text-base'>
-            { header.map((head, i) => <TableHead key={i}>{ head.toUpperCase() }</TableHead>) }
+            { [...header, ''].map((head, i) => <TableHead key={i}>{ head.toUpperCase() }</TableHead>) }
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -52,32 +50,17 @@ function ThresholdsTable({ header, thresholds, page, setPage }) {
                 <TableRow key={i}>
                   {
                     [i + 1, ...threshold.slice(0, header.length)].map((head, i) => 
-                      <TableHead 
-                        key={i} 
-                        className={`${i == 2 && 'flex items-center gap-3'} ${i == 0 && 'text-base'}`}
-                      >
-                        { head }
-                        { 
-                          i === 2 && 
-                            <Drawer>
-                              <DrawerTrigger className="cursor-pointer">
-                                <ChartNoAxesColumnIncreasing size={20} />
-                              </DrawerTrigger>
-                              <DrawerContent className='flex items-center gap-3 text-center p-2'>
-                                <DrawerTitle>
-                                  { threshold.slice(0, 4).join('/') }
-                                </DrawerTitle>
-                                <DrawerDescription>
-                                  Histogram comparing marks for all grades and max marks.
-                                </DrawerDescription>
-
-                                <ThresholdChart threshold={threshold} header={header} /> 
-                              </DrawerContent>
-                            </Drawer>
-                        }
+                      <TableHead key={i}>
+                        <div className="flex gap-2">
+                          { head }
+                          { subjectIcons.find(([key]) => String(head).toLowerCase().includes(key))?.[1] }
+                        </div>
                       </TableHead>
                     )
                   }
+                  <TableHead>
+                    <ThresholdDrawer threshold={threshold} header={header} />
+                  </TableHead>
                 </TableRow>
               )
             })

@@ -1,9 +1,17 @@
 import { useEffect, useState } from "react"
 import ThresholdsTable from "./ThresholdsTable"
 import { Input } from "../components/ui/input"
-import { Code, ExternalLink } from "lucide-react"
+import { ArrowDown, Code, ExternalLink } from "lucide-react"
 import SelectBoard from "./SelectBoard"
 import Papa from 'papaparse'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "../components/ui/dropdown-menu"
 
 function App() {
 
@@ -12,6 +20,7 @@ function App() {
   const [board, setBoard] = useState(0)
   const [header, setHeader] = useState([])
   const [thresholds, setThresholds] = useState([])
+  const [rowsOnOnePage, setRowsOnOnePage] = useState(20)
   const [page, setPage] = useState(1)
   const [searchedThresholds, setSearchedThresholds] = useState([])
   const [value, setValue] = useState('')
@@ -28,6 +37,7 @@ function App() {
   }, [board])
 
   useEffect(() => {
+    setPage(1)
     setSearchedThresholds(
       thresholds.filter(row =>
         value
@@ -61,19 +71,35 @@ function App() {
               boardIndex={i}
               board={board}
               onClick={() => setBoard(i)}
+              key={i}
             />
           )
         }
       </div>
 
       <h2>{ boardsInfo[board][0] } Table</h2>
-      <div className="flex items-baseline w-full">
+      <div className="flex gap-3 items-baseline w-full">
         <Input 
-          className='max-w-max'
+          className='max-w-max mr-auto'
           placeholder="Search all fields..." 
           onChange={e => setValue(e.target.value)} 
         />
+        <DropdownMenu>
+          <DropdownMenuTrigger className="flex gap-1 text-base cursor-pointer p-2">
+              Rows per page <ArrowDown />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            {
+              [20, 50, 100].map((num, i) => 
+                <DropdownMenuItem className="cursor-pointer" onClick={() => setRowsOnOnePage(num)} key={i}>
+                  { num }
+                </DropdownMenuItem>
+              )
+            }
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
+
       <ThresholdsTable 
         header={header}
         thresholds={
@@ -83,6 +109,7 @@ function App() {
               : []
             : thresholds
         } 
+        rowsOnOnePage={rowsOnOnePage}
         page={page}
         setPage={setPage}
       />

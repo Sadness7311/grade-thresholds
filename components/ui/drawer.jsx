@@ -6,25 +6,25 @@ import { cn } from "../../lib/utils"
 function Drawer({
   ...props
 }) {
-  return <DrawerPrimitive.Root data-slot="drawer" {...props} />;
+  return <DrawerPrimitive.Root data-slot="drawer" {...props} />
 }
 
 function DrawerTrigger({
   ...props
 }) {
-  return <DrawerPrimitive.Trigger data-slot="drawer-trigger" {...props} />;
+  return <DrawerPrimitive.Trigger data-slot="drawer-trigger" {...props} />
 }
 
 function DrawerPortal({
   ...props
 }) {
-  return <DrawerPrimitive.Portal data-slot="drawer-portal" {...props} />;
+  return <DrawerPrimitive.Portal data-slot="drawer-portal" {...props} />
 }
 
 function DrawerClose({
   ...props
 }) {
-  return <DrawerPrimitive.Close data-slot="drawer-close" {...props} />;
+  return <DrawerPrimitive.Close data-slot="drawer-close" {...props} />
 }
 
 function DrawerOverlay({
@@ -39,7 +39,7 @@ function DrawerOverlay({
         className
       )}
       {...props} />
-  );
+  )
 }
 
 function DrawerContent({
@@ -66,7 +66,7 @@ function DrawerContent({
         {children}
       </DrawerPrimitive.Content>
     </DrawerPortal>
-  );
+  )
 }
 
 function DrawerHeader({
@@ -78,7 +78,7 @@ function DrawerHeader({
       data-slot="drawer-header"
       className={cn("flex flex-col gap-1.5 p-4", className)}
       {...props} />
-  );
+  )
 }
 
 function DrawerFooter({
@@ -90,7 +90,7 @@ function DrawerFooter({
       data-slot="drawer-footer"
       className={cn("mt-auto flex flex-col gap-2 p-4", className)}
       {...props} />
-  );
+  )
 }
 
 function DrawerTitle({
@@ -100,9 +100,9 @@ function DrawerTitle({
   return (
     <DrawerPrimitive.Title
       data-slot="drawer-title"
-      className={cn("text-foreground font-semibold", className)}
+      className={cn("text-foreground", className)}
       {...props} />
-  );
+  )
 }
 
 function DrawerDescription({
@@ -114,7 +114,7 @@ function DrawerDescription({
       data-slot="drawer-description"
       className={cn("text-muted-foreground text-sm", className)}
       {...props} />
-  );
+  )
 }
 
 export {

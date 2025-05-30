@@ -14,7 +14,7 @@ function Card({
         className
       )}
       {...props} />
-  );
+  )
 }
 
 function CardHeader({
@@ -29,7 +29,7 @@ function CardHeader({
         className
       )}
       {...props} />
-  );
+  )
 }
 
 function CardTitle({
@@ -41,7 +41,7 @@ function CardTitle({
       data-slot="card-title"
       className={cn("leading-none font-semibold", className)}
       {...props} />
-  );
+  )
 }
 
 function CardDescription({
@@ -53,7 +53,7 @@ function CardDescription({
       data-slot="card-description"
       className={cn("text-muted-foreground text-sm", className)}
       {...props} />
-  );
+  )
 }
 
 function CardAction({
@@ -68,14 +68,14 @@ function CardAction({
         className
       )}
       {...props} />
-  );
+  )
 }
 
 function CardContent({
   className,
   ...props
 }) {
-  return (<div data-slot="card-content" className={cn("px-6", className)} {...props} />);
+  return (<div data-slot="card-content" className={cn("px-6", className)} {...props} />)
 }
 
 function CardFooter({
@@ -87,7 +87,7 @@ function CardFooter({
       data-slot="card-footer"
       className={cn("flex items-center px-6 [.border-t]:pt-6", className)}
       {...props} />
-  );
+  )
 }
 
 export {

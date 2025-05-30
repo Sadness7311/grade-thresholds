@@ -6,7 +6,7 @@ import {
 } from "lucide-react"
 
 import { cn } from "../../lib/utils"
-import { buttonVariants } from "./button";
+import { buttonVariants } from "./button"
 
 function Pagination({
   className,
@@ -19,7 +19,7 @@ function Pagination({
       data-slot="pagination"
       className={cn("mx-auto flex w-full justify-center", className)}
       {...props} />
-  );
+  )
 }
 
 function PaginationContent({
@@ -31,13 +31,13 @@ function PaginationContent({
       data-slot="pagination-content"
       className={cn("flex flex-row items-center gap-1", className)}
       {...props} />
-  );
+  )
 }
 
 function PaginationItem({
   ...props
 }) {
-  return <li data-slot="pagination-item" {...props} />;
+  return <li data-slot="pagination-item" {...props} />
 }
 
 function PaginationLink({
@@ -56,7 +56,7 @@ function PaginationLink({
         size,
       }), className) + ' cursor-pointer'}
       {...props} />
-  );
+  )
 }
 
 function PaginationPrevious({
@@ -72,7 +72,7 @@ function PaginationPrevious({
       <ChevronLeftIcon />
       <span className="hidden sm:block">Previous</span>
     </PaginationLink>
-  );
+  )
 }
 
 function PaginationNext({
@@ -88,7 +88,7 @@ function PaginationNext({
       <span className="hidden sm:block">Next</span>
       <ChevronRightIcon />
     </PaginationLink>
-  );
+  )
 }
 
 function PaginationEllipsis({
@@ -104,7 +104,7 @@ function PaginationEllipsis({
       <MoreHorizontalIcon className="size-4" />
       <span className="sr-only">More pages</span>
     </span>
-  );
+  )
 }
 
 export {

@@ -47,7 +47,7 @@ function ChartContainer({
         </RechartsPrimitive.ResponsiveContainer>
       </div>
     </ChartContext.Provider>
-  );
+  )
 }
 
 const ChartStyle = ({
@@ -71,14 +71,14 @@ ${colorConfig
 const color =
   itemConfig.theme?.[theme] ||
   itemConfig.color
-return color ? `  --color-${key}: ${color};` : null
+return color ? `  --color-${key}: ${color}` : null
 })
 .join("\n")}
 }
 `)
           .join("\n"),
       }} />
-  );
+  )
 }
 
 const ChartTooltip = RechartsPrimitive.Tooltip
@@ -118,14 +118,14 @@ function ChartTooltipContent({
         <div className={cn("font-medium", labelClassName)}>
           {labelFormatter(value, payload)}
         </div>
-      );
+      )
     }
 
     if (!value) {
       return null
     }
 
-    return <div className={cn("font-medium", labelClassName)}>{value}</div>;
+    return <div className={cn("font-medium", labelClassName)}>{value}</div>
   }, [
     label,
     labelFormatter,
@@ -206,11 +206,11 @@ function ChartTooltipContent({
                 </>
               )}
             </div>
-          );
+          )
         })}
       </div>
     </div>
-  );
+  )
 }
 
 const ChartLegend = RechartsPrimitive.Legend
@@ -256,10 +256,10 @@ function ChartLegendContent({
             )}
             {itemConfig?.label}
           </div>
-        );
+        )
       })}
     </div>
-  );
+  )
 }
 
 // Helper to extract item config from a payload.
@@ -296,7 +296,7 @@ function getPayloadConfigFromPayload(
 
   return configLabelKey in config
     ? config[configLabelKey]
-    : config[key];
+    : config[key]
 }
 
 export {
