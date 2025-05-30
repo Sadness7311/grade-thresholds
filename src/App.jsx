@@ -52,7 +52,7 @@ function App() {
       </div>
 
       <h1 className="mt-20">Grade Boundaries</h1>
-      <p className="mx-4 lg:mx-60">Grade boundaries for all exam boards! Useful to look up grade thresholds quickly for any year. If you find this useful, donate to us! </p>
+      <p className="max-w-2xl mx-auto">Grade boundaries for all exam boards! Useful to look up grade thresholds quickly for any year. If you find this useful, donate to us! </p>
       <div className="w-full flex justify-center flex-wrap gap-3 mb-20">
         { 
           boardsInfo.map((boardInfo, i) => 
