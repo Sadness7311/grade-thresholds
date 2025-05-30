@@ -15,6 +15,15 @@ import {
   PaginationPrevious,
 } from "../components/ui/pagination"
 import { useEffect, useState } from "react"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "../components/ui/dialog"
+import { ChartColumnDecreasing } from 'lucide-react'
 
 
 function ThresholdsTable({ header, thresholds, page, setPage }) {
@@ -43,8 +52,23 @@ function ThresholdsTable({ header, thresholds, page, setPage }) {
               <TableRow key={i}>
                 {
                   [i + 1, ...threshold].map((head, i) => 
-                    <TableHead key={i} className={i == 0 && 'text-base'}>
+                    <TableHead 
+                      key={i} 
+                      className={`${i == 2 && 'flex items-center gap-3'} ${i == 0 && 'text-base'}`}
+                    >
                       { head }
+                      { 
+                        i === 2 && 
+                          <Dialog>
+                            <DialogTrigger className="cursor-pointer">
+                              <ChartColumnDecreasing className='text-chart-2' size={20} />
+                            </DialogTrigger>
+                            <DialogContent>
+                              <h2>Data for { head }</h2>
+                              <p>Under development...</p>
+                            </DialogContent>
+                          </Dialog>
+                      }
                     </TableHead>
                   )
                 }
