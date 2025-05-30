@@ -17,20 +17,19 @@ import {
 import { useEffect, useState } from "react"
 
 
-function ThresholdsTable({ header, thresholds }) {
+function ThresholdsTable({ header, thresholds, page, setPage }) {
 
   const rowsOnOnePage = 20
   const totalPages = Math.ceil(thresholds.length / rowsOnOnePage)
 
   const [currentThresholds, setCurrentThresholds] = useState([])
-  const [page, setPage] = useState(1)
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
     setCurrentThresholds(thresholds.slice((page - 1) * rowsOnOnePage, page * rowsOnOnePage))
   }, [thresholds, page])
 
-  return currentThresholds.length ? (
+  return header ? (
     <div className='w-full flex flex-col gap-5'>
       <Table>
         <TableHeader>
@@ -104,7 +103,7 @@ function ThresholdsTable({ header, thresholds }) {
       </Pagination>
     </div>
   ) : (
-    <span>Loading...</span>
+    <h2>Loading...</h2>
   )
 }
 
