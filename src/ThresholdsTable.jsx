@@ -9,6 +9,7 @@ import {
   Pagination,
   PaginationContent,
   PaginationItem,
+  PaginationEllipsis,
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
@@ -18,14 +19,15 @@ import { useEffect, useState } from "react"
 
 function ThresholdsTable({ header, thresholds }) {
 
-  const totalPages = Math.ceil(thresholds.length / 200)
+  const rowsOnOnePage = 20
+  const totalPages = Math.ceil(thresholds.length / rowsOnOnePage)
 
   const [currentThresholds, setCurrentThresholds] = useState([])
   const [page, setPage] = useState(1)
 
   useEffect(() => {
-    setCurrentThresholds(thresholds.slice((page - 1) * 200, page * 200))
-    window.scrollTo(0, 0)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+    setCurrentThresholds(thresholds.slice((page - 1) * rowsOnOnePage, page * rowsOnOnePage))
   }, [thresholds, page])
 
   return currentThresholds.length ? (
@@ -56,19 +58,47 @@ function ThresholdsTable({ header, thresholds }) {
       <Pagination>
         <PaginationContent>
           <PaginationItem>
-            <PaginationPrevious onClick={() => setPage(prev => prev > 1 ? prev - 1 : 1)} />
+            <PaginationPrevious onClick={() => setPage(prev => Math.max(prev - 1, 1))} />
           </PaginationItem>
+
           <PaginationItem>
-            { 
-              Array.from({ length: totalPages }).map((_, i) => 
-                <PaginationLink onClick={() => setPage(i + 1)} className={page === i + 1 && 'bg-accent'}>
-                  { i + 1 }
+            <PaginationLink onClick={() => setPage(1)} className={page === 1 ? 'bg-accent' : ''}>
+              1
+            </PaginationLink>
+          </PaginationItem>
+
+          {page > 3 && (
+            <PaginationItem>
+              <PaginationEllipsis />
+            </PaginationItem>
+          )}
+
+          {[page - 1, page, page + 1].map(p =>
+            p > 1 && p < totalPages ? (
+              <PaginationItem key={p}>
+                <PaginationLink onClick={() => setPage(p)} className={page === p ? 'bg-accent' : ''}>
+                  {p}
                 </PaginationLink>
-              )
-            }
-          </PaginationItem>
+              </PaginationItem>
+            ) : null
+          )}
+
+          {page < totalPages - 2 && (
+            <PaginationItem>
+              <PaginationEllipsis />
+            </PaginationItem>
+          )}
+
+          {totalPages > 1 && (
+            <PaginationItem>
+              <PaginationLink onClick={() => setPage(totalPages)} className={page === totalPages ? 'bg-accent' : ''}>
+                {totalPages}
+              </PaginationLink>
+            </PaginationItem>
+          )}
+
           <PaginationItem>
-            <PaginationNext onClick={() => setPage(prev => prev < totalPages ? prev + 1 : totalPages)} />
+            <PaginationNext onClick={() => setPage(prev => Math.min(prev + 1, totalPages))} />
           </PaginationItem>
         </PaginationContent>
       </Pagination>
