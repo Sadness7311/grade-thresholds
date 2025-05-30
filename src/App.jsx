@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import ThresholdsTable from "./ThresholdsTable"
 import { Input } from "../components/ui/input"
-import { ArrowDown, Code, ExternalLink } from "lucide-react"
+import { ChevronDown } from "lucide-react"
 import SelectBoard from "./SelectBoard"
 import Papa from 'papaparse'
 import {
@@ -10,6 +10,9 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../components/ui/dropdown-menu"
+import Nav from "./Nav"
+import { Button } from "../components/ui/button"
+import Footer from "./Footer"
 
 function App() {
 
@@ -48,16 +51,12 @@ function App() {
           )
       )
     )
-  }, [value])
+  }, [value, thresholds])
 
   return (
-    <div className="w-full flex flex-col items-center text-center gap-5 px-2 pb-10">
+    <div className="w-full flex flex-col items-center text-center gap-5 px-2">
     
-      <div className="flex items-center justify-end gap-8 px-4 w-full py-7 border-b-1 border-accent sm:px-12">
-        <p className="flex gap-2">Donate <ExternalLink /></p>
-        <p>Documentation</p>
-        <p className="flex gap-2">API <Code /></p>
-      </div>
+      <Nav />
 
       <h1 className="mt-20">Grade Boundaries</h1>
       <p className="max-w-2xl mx-auto">Grade boundaries for all exam boards! Useful to look up grade thresholds quickly for any year. If you find this useful, donate to us! </p>
@@ -83,8 +82,8 @@ function App() {
           onChange={e => setValue(e.target.value)} 
         />
         <DropdownMenu>
-          <DropdownMenuTrigger className="flex text-base cursor-pointer px-4 py-2 bg-accent rounded-md">
-              { rowsOnOnePage } <ArrowDown />
+          <DropdownMenuTrigger>
+              <Button variant="ghost">{ rowsOnOnePage } <ChevronDown /></Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
             {
@@ -111,6 +110,8 @@ function App() {
         page={page}
         setPage={setPage}
       />
+
+      <Footer />
     </div>
   )
 }
