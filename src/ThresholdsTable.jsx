@@ -16,14 +16,14 @@ import {
 } from "../components/ui/pagination"
 import { useEffect, useState } from "react"
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "../components/ui/dialog"
-import { ChartColumnDecreasing } from 'lucide-react'
+  Drawer,
+  DrawerContent,
+  DrawerDescription,
+  DrawerTitle,
+  DrawerTrigger,
+} from "../components/ui/drawer"
+import { ChartNoAxesColumnIncreasing } from 'lucide-react'
+import ThresholdChart from "./ThresholdChart"
 
 
 function ThresholdsTable({ header, thresholds, page, setPage }) {
@@ -34,7 +34,6 @@ function ThresholdsTable({ header, thresholds, page, setPage }) {
   const [currentThresholds, setCurrentThresholds] = useState([])
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
     setCurrentThresholds(thresholds.slice((page - 1) * rowsOnOnePage, page * rowsOnOnePage))
   }, [thresholds, page])
 
@@ -42,38 +41,46 @@ function ThresholdsTable({ header, thresholds, page, setPage }) {
     <div className='w-full flex flex-col gap-5'>
       <Table>
         <TableHeader>
-          <TableRow className='text-base bg-accent'>
-            { header.map((head, i) => <TableHead key={i}>{ head }</TableHead>) }
+          <TableRow className='bg-accent text-base'>
+            { header.map((head, i) => <TableHead key={i}>{ head.toUpperCase() }</TableHead>) }
           </TableRow>
         </TableHeader>
         <TableBody>
           { 
-            currentThresholds.map((threshold, i) => 
-              <TableRow key={i}>
-                {
-                  [i + 1, ...threshold].map((head, i) => 
-                    <TableHead 
-                      key={i} 
-                      className={`${i == 2 && 'flex items-center gap-3'} ${i == 0 && 'text-base'}`}
-                    >
-                      { head }
-                      { 
-                        i === 2 && 
-                          <Dialog>
-                            <DialogTrigger className="cursor-pointer">
-                              <ChartColumnDecreasing className='text-chart-2' size={20} />
-                            </DialogTrigger>
-                            <DialogContent>
-                              <h2>Data for { head }</h2>
-                              <p>Under development...</p>
-                            </DialogContent>
-                          </Dialog>
-                      }
-                    </TableHead>
-                  )
-                }
-              </TableRow>
-            )
+            currentThresholds.map((threshold, i) => {  
+              return (
+                <TableRow key={i}>
+                  {
+                    [i + 1, ...threshold.slice(0, header.length)].map((head, i) => 
+                      <TableHead 
+                        key={i} 
+                        className={`${i == 2 && 'flex items-center gap-3'} ${i == 0 && 'text-base'}`}
+                      >
+                        { head }
+                        { 
+                          i === 2 && 
+                            <Drawer>
+                              <DrawerTrigger className="cursor-pointer">
+                                <ChartNoAxesColumnIncreasing size={20} />
+                              </DrawerTrigger>
+                              <DrawerContent className='flex items-center gap-3 text-center p-2'>
+                                <DrawerTitle>
+                                  { threshold.slice(0, 4).join('/') }
+                                </DrawerTitle>
+                                <DrawerDescription>
+                                  Histogram comparing marks for all grades and max marks.
+                                </DrawerDescription>
+
+                                <ThresholdChart threshold={threshold} header={header} /> 
+                              </DrawerContent>
+                            </Drawer>
+                        }
+                      </TableHead>
+                    )
+                  }
+                </TableRow>
+              )
+            })
           }
         </TableBody>
       </Table>

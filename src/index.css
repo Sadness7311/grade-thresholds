@@ -44,12 +44,12 @@
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  --foreground: #51234F;
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
+  --primary:#DC1D64;
   --primary-foreground: oklch(0.984 0.003 247.858);
   --secondary: oklch(0.968 0.007 247.896);
   --secondary-foreground: oklch(0.208 0.042 265.755);
@@ -111,6 +111,21 @@
 }
 
 @layer base {
+  :root {
+    --chart-1: oklch(0.646 0.222 41.116);
+    --chart-2: oklch(0.6 0.118 184.704);
+    --chart-3: oklch(0.398 0.07 227.392);
+    --chart-4: oklch(0.828 0.189 84.429);
+    --chart-5: oklch(0.769 0.188 70.08);
+  }
+  
+  .dark {
+    --chart-1: oklch(0.488 0.243 264.376);
+    --chart-2: oklch(0.696 0.17 162.48);
+    --chart-3: oklch(0.769 0.188 70.08);
+    --chart-4: oklch(0.627 0.265 303.9);
+    --chart-5: oklch(0.645 0.246 16.439);
+  }
   * {
     @apply border-border outline-ring/50;
   }
@@ -124,7 +139,7 @@ body {
 }
 
 h1 {
-  @apply text-5xl
+  @apply text-6xl sm:text-7xl 
 }
 h2 {
   @apply text-2xl
@@ -132,6 +147,9 @@ h2 {
 p {
   @apply text-base
 }
+svg {
+  @apply text-primary
+}
 a {
-  @apply text-[blue] hover:underline
+  @apply text-[#05D7FF] hover:underline
 }

@@ -1,9 +1,15 @@
 import { useEffect, useState } from "react"
 import ThresholdsTable from "./ThresholdsTable"
 import { Input } from "../components/ui/input"
+import { Code, ExternalLink } from "lucide-react"
+import SelectBoard from "./SelectBoard"
+import Papa from 'papaparse'
 
 function App() {
 
+  const boardsInfo = [['Cie', 'cie_grade_boundaries'],  ['Edexcel', 'edexcel_grade_boundaries'], ['AQA Oxford', 'aqaoxford_grade_boundaries']]
+  
+  const [board, setBoard] = useState(0)
   const [header, setHeader] = useState([])
   const [thresholds, setThresholds] = useState([])
   const [page, setPage] = useState(1)
@@ -11,18 +17,17 @@ function App() {
   const [value, setValue] = useState('')
 
   useEffect(() => {
-    fetch("/cie_grade_boundaries.csv")
+    fetch(`/${boardsInfo[board][1]}.csv`)
       .then(res => res.text())
       .then(csvText => {
-        const lines = csvText.split('\n')
-        const data = lines.map(line => line.split(','))
+        const parsed = Papa.parse(csvText.trim(), { skipEmptyLines: true })
+        const data = parsed.data
         setHeader(['No.', ...data[0]])
         setThresholds(data.slice(1))
       })
-  }, [])
+  }, [board])
 
   useEffect(() => {
-    setPage(1)
     setSearchedThresholds(
       thresholds.filter(row =>
         value
@@ -38,10 +43,30 @@ function App() {
   }, [value])
 
   return (
-    <div className="flex flex-col items-center text-center gap-5 py-10 px-2">
-      <h1 className='mb-10'>Grade Boundaries Dataset</h1>
+    <div className="w-full flex flex-col items-center text-center gap-5 px-2 pb-10">
+    
+      <div className="flex items-center justify-end gap-8 px-4 w-full py-5 border-b-1 border-accent sm:px-12">
+        <p className="flex gap-2">Donate <ExternalLink /></p>
+        <p>Documentation</p>
+        <p className="flex gap-2">API <Code /></p>
+      </div>
 
-      <h2>CIE Table</h2>
+      <h1 className="mt-20">Grade Boundaries</h1>
+      <p className="mx-4 lg:mx-60">Grade boundaries for all exam boards! Useful to look up grade thresholds quickly for any year. If you find this useful, donate to us! </p>
+      <div className="w-full flex justify-center flex-wrap gap-3 mb-20">
+        { 
+          boardsInfo.map((boardInfo, i) => 
+            <SelectBoard 
+              name={boardInfo[0]} 
+              boardIndex={i}
+              board={board}
+              onClick={() => setBoard(i)}
+            />
+          )
+        }
+      </div>
+
+      <h2>{ boardsInfo[board][0] } Table</h2>
       <div className="flex items-baseline w-full">
         <Input 
           className='max-w-max'
