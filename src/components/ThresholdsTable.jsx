@@ -14,25 +14,21 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "../../components/ui/pagination"
-import { useEffect, useState } from "react"
+import { memo, useMemo } from "react"
 import ThresholdDrawer from "./ThresholdDrawer"
 import { Atom, BookType, BriefcaseBusiness, Calculator, Code, FlaskConical, HandCoins, Leaf, Map, Pen, User } from "lucide-react"
 
 
 function ThresholdsTable({ header, thresholds, rowsOnOnePage, page, setPage }) {
 
-  const [totalPages, setTotalPages] = useState(Math.ceil(thresholds.length / rowsOnOnePage)) 
-  const [currentThresholds, setCurrentThresholds] = useState([])
-
   const subjectIcons = [['math', <Calculator />], ['physics', <Atom />], ['computer', <Code />], ['bio', <Leaf />], ['business', <BriefcaseBusiness />], ['chemistry', <FlaskConical />], ['art', <Pen />], ['accounting', <User />], ['economics', <HandCoins />], ['english', <BookType />], ['geography', <Map />]]
 
-  useEffect(() => {
-    setCurrentThresholds(thresholds.slice((page - 1) * rowsOnOnePage, page * rowsOnOnePage))
+  const currentThresholds = useMemo(() => {
+    return thresholds.slice((page - 1) * rowsOnOnePage, page * rowsOnOnePage)
   }, [thresholds, page, rowsOnOnePage])
 
-  useEffect(() => {
-    setTotalPages(Math.ceil(thresholds.length / rowsOnOnePage))
-    setPage(1)
+  const totalPages = useMemo(() => {
+    return Math.ceil(thresholds.length / rowsOnOnePage)
   }, [rowsOnOnePage, thresholds])
 
   return header ? (
@@ -121,4 +117,4 @@ function ThresholdsTable({ header, thresholds, rowsOnOnePage, page, setPage }) {
   )
 }
 
-export default ThresholdsTable
+export default memo(ThresholdsTable)

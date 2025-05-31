@@ -17,9 +17,10 @@ function DropdownMenuPortal({
 }
 
 function DropdownMenuTrigger({
+  className,
   ...props
 }) {
-  return (<DropdownMenuPrimitive.Trigger data-slot="dropdown-menu-trigger" {...props} />)
+  return (<DropdownMenuPrimitive.Trigger className={"flex items-center gap-1 p-1.5 rounded-md transition-all hover:bg-accent " + className} data-slot="dropdown-menu-trigger" {...props} />)
 }
 
 function DropdownMenuContent({

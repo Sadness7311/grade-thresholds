@@ -8,22 +8,41 @@ import {
 } from "../../components/ui/dropdown-menu"
 
 
-function TableControls({ rowsOnOnePage, setRowsOnOnePage, setValue }) {
+function TableControls({ header, sorting, setSorting, rowsOnOnePage, setRowsOnOnePage, setValue }) {
     return (
         <div className="flex gap-3 items-baseline w-full">
             <Input 
-            className='max-w-max mr-auto'
-            placeholder="Search all fields..." 
-            onChange={e => setValue(e.target.value)} 
+                className='max-w-max'
+                placeholder="Search all fields..." 
+                onChange={e => setValue(e.target.value)} 
             />
+            <DropdownMenu className="mr-auto">
+                <DropdownMenuTrigger>
+                    Sort By <ChevronDown />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                    {
+                    header.slice(1).map((item, i) => 
+                        <DropdownMenuItem 
+                            className={i == sorting && 'bg-accent'}
+                            onClick={() => setSorting(i)} 
+                            key={i}
+                        >
+                            { item }
+                        </DropdownMenuItem>
+                    )
+                    }
+                </DropdownMenuContent>
+            </DropdownMenu>
+
             <DropdownMenu>
-            <DropdownMenuTrigger className="flex cursor-pointer">
+            <DropdownMenuTrigger>
                 { rowsOnOnePage } <ChevronDown />
             </DropdownMenuTrigger>
             <DropdownMenuContent>
                 {
                 [20, 50, 100].map((num, i) => 
-                    <DropdownMenuItem className="cursor-pointer" onClick={() => setRowsOnOnePage(num)} key={i}>
+                    <DropdownMenuItem onClick={() => setRowsOnOnePage(num)} key={i}>
                     { num }
                     </DropdownMenuItem>
                 )
