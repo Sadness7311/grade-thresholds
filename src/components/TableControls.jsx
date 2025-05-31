@@ -10,7 +10,7 @@ import {
 
 function TableControls({ header, sorting, setSorting, rowsOnOnePage, setRowsOnOnePage, setValue }) {
     return (
-        <div className="flex gap-3 items-baseline w-full">
+        <div className="flex flex-wrap gap-3 items-baseline w-full">
             <Input 
                 className='max-w-max'
                 placeholder="Search all fields..." 
