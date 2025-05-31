@@ -10,8 +10,15 @@ import {
 
 function ThresholdChart({ threshold, header }) {
 
-    const labels = header.slice(-5)
-    const data = threshold.slice(-5).map((item, i) => ({ marks: item, label: labels[i], maxMarks: threshold[4] }))
+    const labels = header.slice(6, header.length)
+      .map(label => label.toUpperCase())
+    const data = threshold.slice(5, header.length)
+      .map((item, i) => ({ 
+        marks: item || 0, 
+        label: labels[i], 
+        maxMarks: threshold[4] 
+    }))
+
     const chartConfig = {
       marks: {
         label: "Marks",

@@ -1,5 +1,5 @@
 year,session,code,unit,max_mark,a*,a,b,c,d,e,u
-2015,Jun,WAC01,Unit 1: The Accounting System and,200,,145,128,111,94,78,0
+2015,Jun,WAC01,Unit 1: The Accounting System and Costing,200,,145,128,111,94,78,0
 2015,Jun,WAC02,Unit 2: Corporate and Management,200,166.0,149,132,115,98,82,0
 2015,Jun,WBI01,"Lifestyle, Transport, Genes and Health",80,,60,55,50,46,42,0
 2015,Jun,WBI02,"Development, Plants and the Environment",80,,59,55,51,47,43,0
@@ -40,7 +40,7 @@ year,session,code,unit,max_mark,a*,a,b,c,d,e,u
 2015,Jun,WST02,Statistics S2,75,67.0,60,52,44,37,30,0
 2015,Jun,WST03,Statistics S3,75,70.0,65,58,51,44,38,0
 2015,Jun,YLA0,International A level Law,100,62.0,57,52,47,42,37,0
-2016,Jan,WAC01,Unit 1: The Accounting System and,200,,149,130,111,92,74,0
+2016,Jan,WAC01,Unit 1: The Accounting System and Costing,200,,149,130,111,92,74,0
 2016,Jan,WAC02,Unit 2: Corporate and Management,200,165.0,147,129,111,93,75,0
 2016,Jan,WBI01,"Lifestyle, Transport, Genes and Health",80,,57,51,45,39,33,0
 2016,Jan,WBI02,"Development, Plants and the Environment",80,,54,49,44,40,36,0
@@ -77,9 +77,9 @@ year,session,code,unit,max_mark,a*,a,b,c,d,e,u
 2016,Jan,WPH06,Experimental Physics,40,31.0,28,25,22,20,18,0
 2016,Jan,WST01,Statistics S1,75,,58,51,45,39,33,0
 2016,Jan,WST02,Statistics S2,75,70.0,65,57,49,42,35,0
-2016,Oct,WAC01,Unit 1: The Accounting System and,200,,143,126,109,93,77,0
+2016,Oct,WAC01,Unit 1: The Accounting System and Costing,200,,143,126,109,93,77,0
 2016,Oct,WAC02,Unit 2: Corporate and Management,200,165.0,148,131,114,97,80,0
-2016,Oct,WAC11,Unit 1: The Accounting System and,200,,135,120,105,91,77,0
+2016,Oct,WAC11,Unit 1: The Accounting System and Costing,200,,135,120,105,91,77,0
 2016,Oct,WBI01,"Lifestyle, Transport, Genes and Health",80,,55,50,45,40,35,0
 2016,Oct,WBI02,"Development, Plants and the Environment",80,,58,54,51,48,45,0
 2016,Oct,WBI03,Practical Biology and Research Skills,40,,29,26,23,20,18,0
