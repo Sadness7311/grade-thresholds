@@ -1,16 +1,9 @@
 import { useEffect, useState } from "react"
-import ThresholdsTable from "./ThresholdsTable"
-import { Input } from "../components/ui/input"
-import { ChevronDown } from "lucide-react"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "../components/ui/dropdown-menu"
-import Nav from "./Nav"
-import Footer from "./Footer"
-import Boards from "./Boards"
+import ThresholdsTable from "./components/ThresholdsTable"
+import Nav from "./components/Nav"
+import Footer from "./components/Footer"
+import Boards from "./components/Boards"
+import TableControls from "./components/TableControls"
 
 
 function App() {
@@ -58,27 +51,11 @@ function App() {
 
       <h2>{ boardsInfo[board][0] } Table</h2>
 
-      <div className="flex gap-3 items-baseline w-full">
-        <Input 
-          className='max-w-max mr-auto'
-          placeholder="Search all fields..." 
-          onChange={e => setValue(e.target.value)} 
-          />
-        <DropdownMenu>
-          <DropdownMenuTrigger className="flex cursor-pointer">
-            { rowsOnOnePage } <ChevronDown />
-          </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            {
-              [20, 50, 100].map((num, i) => 
-                <DropdownMenuItem className="cursor-pointer" onClick={() => setRowsOnOnePage(num)} key={i}>
-                  { num }
-                </DropdownMenuItem>
-              )
-            }
-          </DropdownMenuContent>
-        </DropdownMenu>
-      </div>
+      <TableControls 
+        rowsOnOnePage={rowsOnOnePage}
+        setRowsOnOnePage={setRowsOnOnePage}
+        setValue={setValue}
+      />
 
       <ThresholdsTable 
         header={header}

@@ -5,7 +5,7 @@ import {
     ChartTooltipContent, 
     ChartLegend, 
     ChartLegendContent 
-} from "../components/ui/chart"
+} from "../../components/ui/chart"
 
 
 function ThresholdChart({ threshold, header }) {

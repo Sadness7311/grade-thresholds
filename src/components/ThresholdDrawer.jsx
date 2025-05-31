@@ -4,7 +4,7 @@ import {
   DrawerDescription,
   DrawerTitle,
   DrawerTrigger,
-} from "../components/ui/drawer"
+} from "../../components/ui/drawer"
 import { PanelBottom } from 'lucide-react'
 import ThresholdChart from "./ThresholdChart"
 

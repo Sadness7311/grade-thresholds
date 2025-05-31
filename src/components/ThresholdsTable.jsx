@@ -4,7 +4,7 @@ import {
   TableBody,
   TableHead,
   TableRow,
-} from "../components/ui/table"
+} from "../../components/ui/table"
 import {
   Pagination,
   PaginationContent,
@@ -13,7 +13,7 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "../components/ui/pagination"
+} from "../../components/ui/pagination"
 import { useEffect, useState } from "react"
 import ThresholdDrawer from "./ThresholdDrawer"
 import { Atom, BookType, BriefcaseBusiness, Calculator, Code, FlaskConical, HandCoins, Leaf, Map, Pen, User } from "lucide-react"
