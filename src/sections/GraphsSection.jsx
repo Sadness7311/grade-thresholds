@@ -49,7 +49,7 @@ function GraphsSection({ header, thresholds, board }) {
             return
         }
 
-        setMessage(`Showing chart for ${inputCode} with component ${inputComponent}`)
+        setMessage(`Showing chart for ${inputCode}`)
         
         const slicedHeader = header.slice(5, header.length)
 
