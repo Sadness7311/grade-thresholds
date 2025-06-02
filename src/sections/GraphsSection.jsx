@@ -38,8 +38,8 @@ function GraphsSection({ header, thresholds, board }) {
         }
         const filteredThresholds = thresholds
             .filter(threshold =>
-                threshold[select(header, 'code')] == inputCode &&
-                (board === 0 ? threshold[3] == inputComponent : true)
+                threshold[select(header, 'code')] == inputCode.trim() &&
+                (board === 0 ? threshold[3] == inputComponent.trim() : true)
             )
             .sort((a, b) => new Date('1-' + a[2]) - new Date('1-' + b[2]))
 

@@ -12,14 +12,15 @@ function TableSection({ header, thresholds, setThresholds, boardsInfo, board }) 
 
     const searchedThresholds = useMemo(() => {
         return thresholds.filter(row =>
-        value
-            .toLowerCase()
-            .split(/[\s/]+/)
-            .every(term =>
-            row.some(cell =>
-                cell.toString().toLowerCase().includes(term)
-            )
-            )
+            value
+                .trim()
+                .toLowerCase()
+                .split(/[\s/]+/)
+                .every(term =>
+                    row.some(cell =>
+                        cell.toString().toLowerCase().includes(term)
+                    )
+                )
         )
     }, [value, thresholds])
 
