@@ -1,16 +1,16 @@
 import { useEffect, useMemo, useState } from "react"
 import TableControls from "../components/TableControls"
 import ThresholdsTable from "../components/ThresholdsTable"
+import Section from "./Section"
 
 function TableSection({ header, thresholds, setThresholds, boardsInfo, board }) {
 
     const [rowsOnOnePage, setRowsOnOnePage] = useState(20)
     const [page, setPage] = useState(1)
-    const [sorting, setSorting] = useState(2)
+    const [sorting, setSorting] = useState(0)
     const [value, setValue] = useState('')
 
     const searchedThresholds = useMemo(() => {
-        setPage(1)
         return thresholds.filter(row =>
         value
             .toLowerCase()
@@ -25,17 +25,25 @@ function TableSection({ header, thresholds, setThresholds, boardsInfo, board }) 
 
     useEffect(() => {
         setThresholds(prev => [...prev].sort((a, b) =>
-        isNaN(a[sorting]) || isNaN(b[sorting])
-            ? String(a[sorting]).localeCompare(String(b[sorting]))
-            : b[sorting] - a[sorting]
+            isNaN(a[sorting]) || isNaN(b[sorting])
+                ? String(a[sorting]).localeCompare(String(b[sorting]))
+                : b[sorting] - a[sorting]
         ))
-    }, [board, sorting])
+    }, [sorting])
+
+    useEffect(() => {
+        setPage(1)
+        setSorting(-1)
+        setValue('')
+    }, [board])
 
     return (
-        <div className="w-full flex flex-col items-center gap-3 mt-20 px-4">
+        <Section className="mt-20">
             <h2 className="mb-8">{ boardsInfo[board][0] } Table</h2>
             <TableControls 
                 header={header}
+                totalThresholds={thresholds.length}
+                value={value}
                 sorting={sorting}
                 setSorting={setSorting}
                 rowsOnOnePage={rowsOnOnePage}
@@ -49,7 +57,7 @@ function TableSection({ header, thresholds, setThresholds, boardsInfo, board }) 
                 page={page}
                 setPage={setPage}
             />
-        </div>
+        </Section>
     )
 }
 

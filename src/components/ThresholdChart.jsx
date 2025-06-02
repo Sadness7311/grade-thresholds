@@ -7,17 +7,16 @@ import {
     ChartLegendContent 
 } from "../../components/ui/chart"
 
-
 function ThresholdChart({ threshold, header }) {
 
-    const labels = header.slice(6, header.length)
+    const labels = header.slice(5, header.length)
       .map(label => label.toUpperCase())
     const data = threshold.slice(5, header.length)
       .map((item, i) => ({ 
         marks: item || 0, 
         label: labels[i], 
         maxMarks: threshold[4] 
-    }))
+      }))
 
     const chartConfig = {
       marks: {
@@ -34,7 +33,8 @@ function ThresholdChart({ threshold, header }) {
             <CartesianGrid />
             <YAxis 
               dataKey="maxMarks"
-              tickMargin={10}
+              tickMargin={5}
+              width={30}
               axisLine={false}
             />
             <XAxis 

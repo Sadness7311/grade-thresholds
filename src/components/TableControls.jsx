@@ -7,30 +7,29 @@ import {
   DropdownMenuTrigger,
 } from "../../components/ui/dropdown-menu"
 
-
-function TableControls({ header, sorting, setSorting, rowsOnOnePage, setRowsOnOnePage, setValue }) {
+function TableControls({ header, sorting, setSorting, totalThresholds, value, setValue, rowsOnOnePage, setRowsOnOnePage }) {
     return (
         <div className="flex flex-wrap gap-3 items-baseline w-full">
             <Input 
-                className='max-w-max'
-                placeholder="Search all fields..." 
+                placeholder="Search all fields..."
+                value={value === undefined ? '' : value} 
                 onChange={e => setValue(e.target.value)} 
             />
-            <DropdownMenu className="mr-auto">
+            <DropdownMenu>
                 <DropdownMenuTrigger>
                     Sort By <ChevronDown />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
                     {
-                    header.slice(1).map((item, i) => 
-                        <DropdownMenuItem 
-                            className={i == sorting && 'bg-accent'}
-                            onClick={() => setSorting(i)} 
-                            key={i}
-                        >
-                            { item }
-                        </DropdownMenuItem>
-                    )
+                        header.map((item, i) => 
+                            <DropdownMenuItem 
+                                className={i == sorting && 'bg-accent'}
+                                onClick={() => setSorting(i)} 
+                                key={i}
+                            >
+                                { item }
+                            </DropdownMenuItem>
+                        )
                     }
                 </DropdownMenuContent>
             </DropdownMenu>
@@ -49,6 +48,13 @@ function TableControls({ header, sorting, setSorting, rowsOnOnePage, setRowsOnOn
                 }
             </DropdownMenuContent>
             </DropdownMenu>
+            <h4 className="ml-auto">
+                {
+                    value 
+                        ? `Showing search results for "${value}"`
+                        : `Showing ${rowsOnOnePage} Rows out of ${totalThresholds} Rows` 
+                }
+            </h4>
         </div>
     )
 }

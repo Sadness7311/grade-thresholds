@@ -18,7 +18,6 @@ import { memo, useMemo } from "react"
 import ThresholdDrawer from "./ThresholdDrawer"
 import { Atom, BookType, BriefcaseBusiness, Calculator, Code, FlaskConical, HandCoins, Leaf, Map, Pen, User } from "lucide-react"
 
-
 function ThresholdsTable({ header, thresholds, rowsOnOnePage, page, setPage }) {
 
   const subjectIcons = [['math', <Calculator />], ['physics', <Atom />], ['computer', <Code />], ['bio', <Leaf />], ['business', <BriefcaseBusiness />], ['chemistry', <FlaskConical />], ['art', <Pen />], ['accounting', <User />], ['economics', <HandCoins />], ['english', <BookType />], ['geography', <Map />]]
@@ -32,11 +31,11 @@ function ThresholdsTable({ header, thresholds, rowsOnOnePage, page, setPage }) {
   }, [rowsOnOnePage, thresholds])
 
   return header ? (
-    <div className='w-full flex flex-col gap-5'>
+    <div className='w-full flex flex-col gap-4'>
       <Table>
         <TableHeader>
           <TableRow className='bg-accent text-base'>
-            { [...header, ''].map((head, i) => <TableHead key={i}>{ head.toUpperCase() }</TableHead>) }
+            { ['No.', ...header, ''].map((head, i) => <TableHead key={i}>{ head.toUpperCase() }</TableHead>) }
           </TableRow>
         </TableHeader>
         <TableBody>

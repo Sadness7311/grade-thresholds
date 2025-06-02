@@ -2,6 +2,7 @@ import { useState } from "react"
 import Footer from "./components/Footer"
 import LandingSection from "./sections/LandingSection"
 import TableSection from "./sections/TableSection"
+import GraphsSection from "./sections/GraphsSection"
 
 function App() {
 
@@ -25,6 +26,11 @@ function App() {
         thresholds={thresholds}
         setThresholds={setThresholds}
         boardsInfo={boardsInfo}
+        board={board}
+      />
+      <GraphsSection 
+        header={header}
+        thresholds={thresholds}
         board={board}
       />
       <Footer />

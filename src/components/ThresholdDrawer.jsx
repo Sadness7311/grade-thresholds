@@ -16,7 +16,7 @@ function ThresholdDrawer({ threshold, header }) {
           </DrawerTrigger>
           <DrawerContent className='flex items-center gap-3 text-center p-2'>
             <DrawerTitle>
-              { threshold.slice(0, 4).join('/') }
+              Row Information
             </DrawerTitle>
             <DrawerDescription>
               Histogram comparing marks for all grades and max marks.

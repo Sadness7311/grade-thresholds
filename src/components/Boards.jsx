@@ -10,7 +10,7 @@ function Boards({ boardsInfo, board, setBoard, setHeader, setThresholds }) {
             .then(csvText => {
                 const parsed = Papa.parse(csvText.trim(), { skipEmptyLines: true })
                 const data = parsed.data
-                setHeader(['No.', ...data[0]])
+                setHeader(data[0])
                 setThresholds(data.slice(1))
             })
       }, [board])
@@ -20,13 +20,13 @@ function Boards({ boardsInfo, board, setBoard, setHeader, setThresholds }) {
             { 
                 boardsInfo.map((boardInfo, i) => 
                     <SelectBoard 
-                    name={boardInfo[0]} 
-                    boardIndex={i}
-                    board={board}
-                    onClick={() => setBoard(i)}
-                    key={i}
+                        name={boardInfo[0]} 
+                        boardIndex={i}
+                        board={board}
+                        onClick={() => setBoard(i)}
+                        key={i}
                     />
-            )
+                )
             }
         </div>
     )
