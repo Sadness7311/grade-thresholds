@@ -1,0 +1,14 @@
+{
+  "cie": {
+    "name": "CIE",
+    "fileName": "cie_grade_boundaries"
+  },
+  "edexcel": {
+    "name": "Edexcel",
+    "fileName": "edexcel_grade_boundaries"
+  },
+  "aqaoxford": {
+    "name": "AQA Oxford",
+    "fileName": "aqaoxford_grade_boundaries"
+  }
+}
